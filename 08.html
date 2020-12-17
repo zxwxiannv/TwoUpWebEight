@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>QQ音乐</title>
+	<link rel="stylesheet" type="text/css" href="2.css">
+	<link rel="stylesheet" type="text/css" href="1.css">
+	<script type="text/javascript">
+		function getStyle(obj, attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			} else {
+				return getComputedStyle(obj, null)[attr];
+			}
+		}
+		function animate(obj,json,callback){
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				var isStop = true;
+				for(var attr in json){
+					var now = 0;
+					if(attr == 'opacity'){
+						now = parseInt(getStyle(obj,attr)*100);
+					}else{
+						now = parseInt(getStyle(obj,attr));
+					}
+					var speed = (json[attr] - now) / 8;
+					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+					var cur = now + speed;
+					if(attr == 'opacity'){
+						obj.style[attr] = cur / 100;
+					}else{
+						obj.style[attr] = cur + 'px';
+					}
+					if(json[attr] !== cur){
+						isStop = false;
+					}
+				}
+				if(isStop){
+					clearInterval(obj.timer);
+					callback&&callback();
+				}
+			}, 30)
+		}
+	</script>
+</head>
+<body>
+	<div id="Content1">
+	  	2020年12月底开始Chrome浏览器不再支持flash
+	<div class="fr" id="collapseDiv">关闭</div>
+	</div>
+	<div class = "header">
+		<div class = "header-top">
+			<div class = "container">
+				<ul class = "header__info fr">
+					<li id="DL" onclick="denglv()">登录/注册</li>
+					<li class = "iphone">客户端</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "container header-bottom clear">
+			<img src = "images/logo@2x.png" alt = "logo" class = "logo fl" >
+			<ul class = "nav1 fl clear">
+				<li class = "first"><a href = "#">音乐馆</a></li>
+				<li><a href = "#">我的音乐</a></li>
+				<li><a href = "#">开发平台</a></li>
+				<li><a href = "#">VIP</a></li>
+				<li class = "last"><a href = "#">更多</a></li>
+			</ul>
+			<form class = "form clear fr">
+				<input type = "text" name = "search1" placeholder = "音乐、MV、用户" class = "search">
+				<input type = "button" name = "" class = "submit">
+			</form>
+		</div>
+	</div>
+	<div class="DLdiv" id="DLdiv">
+		<input class="ipt" id = "test" type="text" placeholder = "用户名" >
+		<p class="dot"></p>
+		<input class="ipt" id = "mima" type="password" placeholder="设置密码">
+		<p class="dot"></p>
+		<button class="btn" onclick="print()">立即登录/注册</button>
+	</div>
+	<div class="boxx"></div>
+	<div class="box1">
+			<div class="clear index_hd">
+				<h2 class="index_tit">歌单推荐</h2>
+			</div>
+			<div class="mod_tab">
+				<a href="#">为你推荐</a>
+				<a href="#"></a>
+				<a href="#">3-6岁</a>
+				<a href="#">网络歌曲</a>
+				<a href="#">轻音乐</a>
+				<a href="#">官方歌单</a>
+				<a href="#">情歌</a>
+			</div>
+			<div class="clear bbox1">
+				<div class="box1first"> 
+					<img src="images/1.jpg" .png">
+					<p class="p-top">「下班了」累了就听这些DJ吧</p>
+					<p class="p-bottom">播放量：103.7万</p>
+				</div> 
+				<div class="box1middle">
+					<img src="images/2.jpg">
+					<p class="p-top1">张口就爱上，这些翻唱火爆全网</p>
+					<p class="p-bottom1">播放量：312.8万</p>
+				</div>
+				<div class="box1middle2">
+					<img src="images/3.jpg">
+					<p class="p-top2">大热古装电视剧主题歌曲精选</p>
+					<p class="p-bottom2">播放量：236.3万</p>
+				</div>
+				<div class="box1middle3">
+					<img src="images/4.jpg">
+					<p class="p-top3">「欧美经典」感受时光从耳边划走</p>
+					<p class="p-bottom3">播放量：1086.7万</p>
+				</div>
+				<div class="box1last">
+					<img src="images/5.jpg">
+					<p class="p-top4">神仙拍档｜周深合唱歌曲集锦</p>
+					<p class="p-bottom4">播放量：56.5万</p>
+				</div>
+			</div>
+		
+	</div>
+	<div class="clear index_hd1">
+				<h2 class="index_tit1">精彩推荐</h2>
+	</div>
+	<div class = "box" id = "box">
+		<div class="slider" id="slider">
+			<div class="slide"><img src="images/3345975.jpg"></div>
+			<div class="slide"><img src="images/3355086.jpg"></div>
+			<div class="slide"><img src="images/3351115.jpg"></div>
+			<div class="slide"><img src="images/3355152.jpg"></div>
+			<div class="slide"><img src="images/3353879.jpg"></div>
+			<div class="slide"><img src="images/3345975.jpg"></div>
+			<div class="slide"><img src="images/3355086.jpg"></div>
+		</div>
+		<span id="left"></span>
+		<span id="right"></span>
+		<ul class="nav" id="nav">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="footer">
+			        <h4>腾讯音乐</h4>
+        <ul class="clear">
+            <li>关于腾讯</li>
+            <li>About Tencent</li>
+            <li>服务条款</li>
+            <li>用户服务协议</li>
+            <li>隐私政策</li>
+            <li>权力声明</li>
+            <li>广告服务</li>
+            <li>腾讯招聘</li>
+            <li>客服中心</li>
+            <li class="last">网站导航</li>
+        </ul>
+        <p>Copyright © 1998-2020 Tencent.All Rights Reserved.</p>
+        <p>腾讯公司 版权所有 腾讯网络文化经营许可证 版权所有，并保留所有权利。冀ICP备15029982号-1</p>
+    </div>
+    
+	<script>
+		var box = document.getElementById('box');
+		var oNavlist = document.getElementById('nav').children;
+		var slider = document.getElementById('slider');
+		var left = document.getElementById('left');
+		var right = document.getElementById('right');
+		var index = 1;
+		var timer;
+		var isMoving = false;
+		box.onmouseover = function(){
+			animate(left,{opacity:50})
+			animate(right,{opacity:50})
+			clearInterval(timer)
+		}
+		box.onmouseout = function(){
+			animate(left,{opacity:0})
+			animate(right,{opacity:0})
+			timer = setInterval(next, 3000);
+		}
+		right.onclick = next;
+		left.onclick = prev;
+		for( var i=0; i<oNavlist.length; i++ ){
+			oNavlist[i].index = i;
+			oNavlist[i].onclick = function(){
+				index = this.index+1;
+				navmove();
+				animate(slider,{left:-1200*index});
+			}
+		}
+		function next(){
+			if(isMoving){
+				return;
+			}
+			isMoving = true;
+			index++;
+			navmove();
+			animate(slider,{left:-1200*index},function(){
+				if(index==6){
+					slider.style.left = '-1200px';
+					index = 1;
+				}
+				isMoving = false;
+			});
+		}
+		function prev(){
+			if(isMoving){
+				return;
+			}
+			isMoving = true;
+			index--;
+			navmove();
+			animate(slider,{left:-1200*index},function(){
+				if(index==0){
+					slider.style.left = '-6000px';
+					index = 5;
+				}
+				isMoving = false;
+			});
+		}
+		function navmove(){
+			for( var i=0; i<oNavlist.length; i++ ){
+				oNavlist[i].className = "";
+			}
+			if(index >5 ){
+				oNavlist[0].className = "active";
+			}else if(index<=0){
+				oNavlist[4].className = "active";
+			}else {
+				oNavlist[index-1].className = "active";
+			}
+		}
+		timer = setInterval(next, 3000);
+	</script>
+</body>
+<script type="text/javascript">
+	var DL = document.getElementById("DL");
+	var DLdiv = document.getElementById("DLdiv");
+	DLdiv.style.display = "none";
+	function denglv(){
+		DLdiv.style.display = "block";
+	}
+	var Content1 = document.getElementById("Content1");
+	var collapseDiv = document.getElementById("collapseDiv");
+	collapseDiv.onclick = function(){
+		if(Content1.style.display == "none"){
+			Content1.style.display = "block";
+		}
+		else{
+			Content1.style.display ="none"; 
+		}
+	}
+	var ipt = document.getElementsByClassName("ipt");
+	var dot = document.getElementsByClassName("dot");
+	ipt[0].setAttribute("onfocus", "Attent()");
+	ipt[0].setAttribute("onblur", "unAttent()");
+	function Attent(){
+		dot[0].innerHTML = "支持中文数字";
+	}
+	function unAttent(){
+		dot[0].innerHTML = null;
+		if(document.getElementById("test").value == ""){
+		dot[0].innerHTML = "用户名不能为空";
+		}
+	}
+	ipt[1].setAttribute("onfocus", "Attents()");
+	ipt[1].setAttribute("onblur", "unAttents()");
+	function Attents(){
+		dot[1].innerHTML = "建议使用两种字符组合";
+	}
+	function unAttents(){
+		dot[1].innerHTML = null;
+		if(document.getElementById("mima").value == ""){
+		dot[1].innerHTML = "密码不能为空";
+		}
+	}
+	function print(){
+		var yhm = document.getElementById("test").value;
+		var mm = document.getElementById("mima").value;
+		console.log("登录/注册成功!");
+		console.log("用户名：" + yhm);
+		console.log("密码:" + mm);
+		DLdiv.style.display = "none";
+	}
+</script>
+</html>
